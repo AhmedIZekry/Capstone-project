@@ -8,10 +8,15 @@ class Booking(models.Model):
     No_of_guests = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(6)])
     Booking_date = models.DateTimeField(blank=True)
 
+    
+
 class Menu(models.Model):
-    Id = models.IntegerField(primary_key=True,validators=[MinValueValidator(1),MaxValueValidator(5)])
+    Id = models.AutoField(primary_key=True,validators=[MinValueValidator(1),MaxValueValidator(5)])
     Title = models.CharField(max_length=255)
     Price =models.DecimalField(max_digits=10 , decimal_places=2)
-    Inventory = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(5)])
+    Inventory = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(100)])
+
+    def __str__(self):
+        return f'{self.Title} : {str(self.Price)}'
 
 
