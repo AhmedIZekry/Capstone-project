@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'djoser',
     'Resturant',
+    'rest_framework.authtoken',
+    
+
 ]
 
 MIDDLEWARE = [
@@ -130,3 +135,27 @@ STATIC_DIR =['Resturant/static/']
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK ={
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        # 'rest_framework_xml.renderers.XMLRenderer',
+        # 'rest_framework_csv.renderers.CSVRenderer', 
+        # 'rest_framework_yaml.renderers.YAMLRenderer',
+    ],
+    
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        ),
+    
+}
+
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+DJOSER = {
+    'USER_ID_FIELD': 'username'
+}
